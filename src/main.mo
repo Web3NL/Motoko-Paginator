@@ -6,10 +6,9 @@ import List "mo:base/List";
 
 actor {
   // Using Nats as test data
-  let range = Iter.range(1, 13);
-  let data = Iter.toArray(range);
+  let iter = Iter.range(1, 13);
 
-  let iter = Iter.fromArray(data);
+  // choosing 4 entries per page
   let n = 4;
 
   let paginator = Paginator.Paginator<Nat>(iter, n);
