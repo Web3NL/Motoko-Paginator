@@ -2,7 +2,7 @@
 A pagination library for Motoko  
 
 `class Paginator<T>(iter : Iter<T>, n : Nat)`  
-Paginator class  
+Paginator class, makes n items per page  
   
 `function size() : Nat`  
 Returns number of pages in the Paginator  
