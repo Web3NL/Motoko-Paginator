@@ -11,4 +11,13 @@ Returns number of pages in the Paginator
 Returns a specific Page   
 
 `function getAllPages() : Pages`  
-Returns all pages
+Returns all pages  
+
+# Remarks  
+__For efficiency__:  
+Consumes the iter only once.  
+Use List.push to construct a page and a page array.
+
+__For shared functions:__  
+Converts to array of arrays for shared return type  
+
