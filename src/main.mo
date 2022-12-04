@@ -21,7 +21,23 @@ actor {
     paginator.getPage(n);
   };
 
-  public query func getAllPages() : async Paginator.Pages<Nat> {
-    paginator.getAllPages()
-  }
+  public query func getAll() : async Paginator.Pages<Nat> {
+    paginator.getAll();
+  };
+
+  public query func getFirst() : async Paginator.Page<Nat> {
+    paginator.getFirst();
+  };
+
+  public query func getLast() : async Paginator.Page<Nat> {
+    paginator.getLast();
+  };
+
+  public query func getNext(currentPage : Nat) : async ?Paginator.Page<Nat> {
+    paginator.getNext(currentPage);
+  };
+
+  public query func getPrevious(currentPage : Nat) : async ?Paginator.Page<Nat> {
+    paginator.getPrevious(currentPage);
+  };
 };

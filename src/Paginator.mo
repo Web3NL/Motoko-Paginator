@@ -15,23 +15,17 @@ module Paginator {
     var pageList = List.nil<[T]>();
 
     label l loop {
+      var end = false;
       var page = List.nil<T>();
 
-      for (i in Iter.range(1, n)) {
+      label f for (i in Iter.range(1, n)) {
         switch (iter.next()) {
           case (?value) {
             page := List.push<T>(value, page);
           };
-
-          // if iter finished, return the last page with entries < n
-          case null {
-            // reverse to get the right order
-            page := List.reverse(page);
-
-            let vals = List.toArray(page);
-            pageList := List.push<[T]>(vals, pageList);
-
-            break l;
+          case (null) {
+            end := true;
+            break f;
           };
         };
       };
@@ -41,6 +35,8 @@ module Paginator {
 
       let vals = List.toArray(page);
       pageList := List.push<[T]>(vals, pageList);
+
+      if (end) { break l };
     };
 
     // reverse to get the right order
@@ -59,15 +55,47 @@ module Paginator {
 
       if (pages.size() >= n) {
         // array indexing starts with 0 so subtract 1
-        return ?pages[n-1]
-      } else { 
-        return null 
-      };
+        return ?pages[n -1];
+      } else { return null };
     };
 
     // get all pages
-    public func getAllPages() : Pages<T> {
+    public func getAll() : Pages<T> {
       pages;
+    };
+
+    // get first page
+    public func getFirst() : Page<T> {
+      pages[0];
+    };
+
+    // get last page
+    public func getLast() : Page<T> {
+      pages[pages.size() -1];
+    };
+
+    // get next page given currentPage
+    public func getNext(currentPage : Nat) : ?Page<T> {
+      if (
+        pages.size() == 0 or pages.size() == 1 or (currentPage >= pages.size()),
+      ) {
+        return null;
+      } else {
+        // array indexing starts at 0, so dont have to add 1
+        return ?pages[currentPage];
+      };
+    };
+
+    // get previous page given currentPage
+    public func getPrevious(currentPage : Nat) : ?Page<T> {
+      if (
+        pages.size() <= 1 or currentPage <= 1 or currentPage > pages.size()
+      ) {
+        return null;
+      } else {
+        // array indexing starts at 0, so dont have to add 1
+        return ?pages[currentPage - 2];
+      };
     };
 
   };

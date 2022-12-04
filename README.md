@@ -7,11 +7,19 @@ Paginator class, makes n items per page
 `function size() : Nat`  
 Returns number of pages in the Paginator  
 
-`function getPage(n : Nat) : ?Page`  
+`function getPage(n : Nat) : ?Page<T>`  
 Returns a specific Page   
 
-`function getAllPages() : Pages`  
+`function getAll() : Pages<T>`  
 Returns all pages  
+
+`function getFirst() : Page<T>`  
+
+`function getLast() : Page<T>`  
+
+`function getNext() : ?Page<T>`  
+
+`function getPrevious() : ?Page<T>`  
 
 # Remarks  
 __For efficiency__:  
