@@ -1,17 +1,17 @@
 # Motoko-Paginator
 A pagination library for Motoko  
 
-`class Paginator<T>(iter : Iter<T>, n : Nat)`  
-Paginator class, makes n items per page  
+`type Page<T> = [T]`
+
+`type Pages<T> = [Page<T>]`  
+
+__`class Paginator<T>(iter : Iter<T>, n : Nat)`__  
   
 `function size() : Nat`  
-Returns number of pages in the Paginator  
 
 `function getPage(n : Nat) : ?Page<T>`  
-Returns a specific Page   
 
 `function getAll() : Pages<T>`  
-Returns all pages  
 
 `function getFirst() : Page<T>`  
 
